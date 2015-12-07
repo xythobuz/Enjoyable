@@ -47,6 +47,7 @@
 
     statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:36];
     statusItem.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
+    [statusItem.image setTemplate:YES];
     statusItem.highlightMode = YES;
     statusItem.menu = self.statusItemMenu;
     statusItem.target = self;
@@ -94,7 +95,7 @@
     } else {
         statusItem.image = [NSImage imageNamed:@"Status Menu Icon"];
     }
-    
+    [statusItem.image setTemplate:YES];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
@@ -110,6 +111,7 @@
 - (void)eventSimulationStarted:(NSNotification *)note {
     self.simulatingEventsButton.state = NSOnState;
     statusItem.image = [NSImage imageNamed:@"Status Menu Icon"];
+    [statusItem.image setTemplate:YES];
     [NSProcessInfo.processInfo
         disableAutomaticTermination:@"Event simulation running."];
     [NSWorkspace.sharedWorkspace.notificationCenter
@@ -122,6 +124,7 @@
 - (void)eventSimulationStopped:(NSNotification *)note {
     self.simulatingEventsButton.state = NSOffState;
     statusItem.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
+    [statusItem.image setTemplate:YES];
     [NSProcessInfo.processInfo
         enableAutomaticTermination:@"Event simulation running."];
     [NSWorkspace.sharedWorkspace.notificationCenter
